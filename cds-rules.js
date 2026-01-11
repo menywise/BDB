@@ -1,0 +1,240 @@
+onCDSRulesLoaded(
+{
+  "metadata": {
+    "system": "Consensus Design System",
+    "version": "8.3.1",
+    "mode": "STRICT",
+    "last_updated": "2025-01-11",
+    "sources": [
+      "01-consensus-architecture-rules.md",
+      "02-consensus-components-catalog.md"
+    ],
+    "changelog": "Merge Claude compacité + GPT structure exploitable + mappings exhaustifs"
+  },
+
+  "definitions": {
+    "colors": [
+      "primary", "secondary", "success", "warning", "danger", "info", "light", "dark"
+    ],
+    "patterns": {
+      "bootstrap_icons": "^bi-[a-z0-9-]+$",
+      "badge_subtle": "^(badge-soft-|bg-)(primary|secondary|success|warning|danger|info)-subtle$"
+    },
+    "legacy_compat": {
+      "badge-soft-primary": "bg-primary-subtle text-primary",
+      "badge-soft-success": "bg-success-subtle text-success",
+      "badge-soft-warning": "bg-warning-subtle text-warning",
+      "badge-soft-danger": "bg-danger-subtle text-danger",
+      "badge-soft-info": "bg-info-subtle text-info",
+      "badge-soft-secondary": "bg-secondary-subtle text-secondary"
+    }
+  },
+
+  "whitelist": {
+    "layout": [
+      "main-content", "layout-2col", "layout-3col", "section-divider"
+    ],
+    "navigation": [
+      "offcanvas", "offcanvas-start", "offcanvas-end", "offcanvas-header",
+      "offcanvas-title", "offcanvas-body", "header-sticky", "sticky-top"
+    ],
+    "headers": [
+      "doc-header-primary", "doc-header-success", "doc-header-warning", "doc-header-danger"
+    ],
+    "cards": [
+      "layer-card", "layer-card-header", "pole-card", "dork-card",
+      "dork-main", "dork-query", "dork-meta", "dork-actions", "history-item"
+    ],
+    "badges": [
+      "badge-soft-primary", "badge-soft-secondary", "badge-soft-success",
+      "badge-soft-warning", "badge-soft-danger", "badge-soft-info", "badge-valid"
+    ],
+    "icons": [
+      "icon-ctx", "icon-ctx-info", "icon-ctx-warning", "icon-ctx-danger"
+    ],
+    "indicators": [
+      "sync-indicator", "sync-connected", "sync-pending", "sync-error"
+    ],
+    "tables": [
+      "table-crud", "table-mobile", "btn-crud"
+    ],
+    "media": [
+      "avatar", "avatar-sm", "avatar-md", "avatar-lg",
+      "img-secure", "img-placeholder", "img-fallback"
+    ],
+    "components": [
+      "panel", "panel-header", "panel-body", "preview-console", "rating", "chip"
+    ]
+  },
+
+  "attributes": [
+    "lang", "data-label", "data-bs-theme", "data-bs-toggle",
+    "data-bs-target", "data-bs-dismiss", "data-bs-parent"
+  ],
+
+  "blacklist": {
+    "classes": [
+      {
+        "class": "bg-primary",
+        "context": "badge",
+        "rule_id": 7,
+        "severity": "MAJOR",
+        "message": "Badge doit utiliser badge-soft-primary (ou bg-primary-subtle)"
+      },
+      {
+        "class": "bg-success",
+        "context": "badge",
+        "rule_id": 7,
+        "severity": "MAJOR",
+        "message": "Badge doit utiliser badge-soft-success"
+      },
+      {
+        "class": "bg-warning",
+        "context": "badge",
+        "rule_id": 7,
+        "severity": "MAJOR",
+        "message": "Badge doit utiliser badge-soft-warning"
+      },
+      {
+        "class": "bg-danger",
+        "context": "badge",
+        "rule_id": 7,
+        "severity": "MAJOR",
+        "message": "Badge doit utiliser badge-soft-danger"
+      },
+      {
+        "class": "bg-dark",
+        "context": "footer",
+        "rule_id": 3,
+        "severity": "MAJOR",
+        "message": "Footer doit être bg-white (sauf offcanvas)"
+      },
+      {
+        "class": "shadow",
+        "context": "card",
+        "rule_id": 22,
+        "severity": "MINOR",
+        "message": "Card doit utiliser shadow-sm ou shadow-lg (pas shadow seul)"
+      }
+    ],
+    "patterns": [
+      {
+        "regex": "<style[^>]*>",
+        "rule_id": 10,
+        "severity": "CRITICAL",
+        "message": "Balises <style> strictement interdites"
+      },
+      {
+        "regex": "\\sstyle=['\"]",
+        "rule_id": 11,
+        "severity": "CRITICAL",
+        "message": "Styles inline strictement interdits"
+      },
+      {
+        "regex": "linear-gradient\\(",
+        "rule_id": 13,
+        "severity": "MAJOR",
+        "message": "Gradients custom interdits (utiliser classes CDS)"
+      },
+      {
+        "regex": "font-awesome",
+        "rule_id": 18,
+        "severity": "CRITICAL",
+        "message": "Font Awesome interdit (utiliser Bootstrap Icons exclusivement)"
+      }
+    ]
+  },
+
+  "structure_rules": {
+    "root": "html[lang='fr'][data-bs-theme='light']",
+    "required_tags": [
+      {
+        "tag": "main",
+        "class_pattern": "(main-content|d-flex flex-column)",
+        "rule_id": 14
+      },
+      {
+        "tag": "header",
+        "class_pattern": "(doc-header-|sticky-top)",
+        "rule_id": 19
+      },
+      {
+        "tag": "footer",
+        "class": "bg-white",
+        "content_required": ["Consensus Design System", "CDS Compliant"],
+        "rule_id": 20
+      }
+    ],
+    "hierarchy": {
+      "table": {
+        "required_classes": ["table-crud", "table-mobile"],
+        "td_attribute": "data-label"
+      },
+      "offcanvas": {
+        "required_classes": ["offcanvas", "offcanvas-start", "bg-dark", "text-white"]
+      }
+    }
+  },
+
+  "mappings": {
+    "fa_to_bi": {
+      "fas fa-key": "bi bi-key",
+      "fas fa-video": "bi bi-camera-video",
+      "fas fa-camera-video": "bi bi-camera-video",
+      "fas fa-question": "bi bi-question-circle",
+      "fas fa-question-circle": "bi bi-question-circle",
+      "fas fa-book": "bi bi-book",
+      "fas fa-book-open": "bi bi-book",
+      "fas fa-envelope": "bi bi-envelope",
+      "fas fa-search": "bi bi-search",
+      "fas fa-info-circle": "bi bi-info-circle",
+      "fas fa-play-circle": "bi bi-play-circle",
+      "fas fa-cogs": "bi bi-gear",
+      "fas fa-gear": "bi bi-gear",
+      "fas fa-store": "bi bi-shop",
+      "fas fa-shop": "bi bi-shop",
+      "fas fa-exclamation-triangle": "bi bi-exclamation-triangle",
+      "fas fa-check-circle": "bi bi-check-circle",
+      "fas fa-comments": "bi bi-chat",
+      "fas fa-chat": "bi bi-chat",
+      "fas fa-paper-plane": "bi bi-send",
+      "fas fa-send": "bi bi-send",
+      "fas fa-trash": "bi bi-trash",
+      "fas fa-plus": "bi bi-plus-circle",
+      "fas fa-plus-circle": "bi bi-plus-circle",
+      "fas fa-pencil": "bi bi-pencil",
+      "fas fa-pencil-alt": "bi bi-pencil",
+      "fas fa-edit": "bi bi-pencil",
+      "fas fa-eye": "bi bi-eye",
+      "fas fa-check": "bi bi-check-lg",
+      "fas fa-times": "bi bi-x-lg",
+      "fas fa-close": "bi bi-x-lg",
+      "fas fa-download": "bi bi-download",
+      "fas fa-upload": "bi bi-upload",
+      "fas fa-file": "bi bi-file-earmark",
+      "fas fa-folder": "bi bi-folder",
+      "fas fa-home": "bi bi-house",
+      "fas fa-user": "bi bi-person",
+      "fas fa-users": "bi bi-people"
+    },
+    "gradient_replacements": {
+      "linear-gradient(to right, #667eea, #764ba2)": "bg-primary",
+      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)": "bg-primary"
+    }
+  },
+
+  "validation": {
+    "cdn_urls": {
+      "bootstrap_css": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
+      "bootstrap_js": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js",
+      "bootstrap_icons": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css",
+      "theme_base": "https://cdn.jsdelivr.net/gh/menywise/BDB@a75daa03b876d052f834046ab3cff6e7583bee65/theme-base.css"
+    },
+    "required_meta": [
+      "<meta charset=\"UTF-8\">",
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
+    ],
+    "doctype": "<!DOCTYPE html>"
+  }
+}  // COLLER LE JSON ICI
+);
