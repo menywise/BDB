@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "system": "Consensus Design System",
+    "version": "8.3",
+    "last_updated": "2025-01-04",
+    "authority_files": ["01-consensus-architecture-rules.md", "02-consensus-components-catalog.md"]
+  },
+  "definitions": {
+    "colors": ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"],
+    "subtle_badges": {
+      "pattern": "bg-{color}-subtle text-{color}",
+      "legacy_compat": "badge-soft-{color}"
+    }
+  },
+  "whitelist": {
+    "classes": [
+      "doc-header-primary",
+      "header-sticky",
+      "offcanvas-start", "btn-close-white",
+      "table-crud", "table-mobile",
+      "badge-soft-primary", "badge-soft-success", "badge-soft-warning", "badge-soft-danger", "badge-soft-info", "badge-soft-secondary",
+      "icon-ctx", "icon-ctx-info", "icon-ctx-warning", "icon-ctx-danger",
+      "sync-indicator", "sync-connected", "sync-pending", "sync-error",
+      "avatar", "avatar-sm", "avatar-md", "avatar-lg",
+      "layer-card", "pole-card", "dork-card", "history-item",
+      "layout-2col", "layout-3col",
+      "preview-console", "panel", "chip", "img-secure", "img-placeholder"
+    ],
+    "attributes": [
+      "data-label", "data-bs-theme", "lang"
+    ]
+  },
+  "blacklist": {
+    "forbidden_classes": [
+      "bg-primary", "bg-success", "bg-warning", "bg-danger"
+    ],
+    "forbidden_patterns": [
+      {
+        "regex": "<style",
+        "message": "Balises <style> interdites (Règle 13)",
+        "severity": "CRITICAL"
+      },
+      {
+        "regex": "style=['\"]",
+        "message": "Styles inline interdits (Règle 13)",
+        "severity": "CRITICAL"
+      },
+      {
+        "regex": "linear-gradient",
+        "message": "Gradients custom interdits (Règle 2)",
+        "severity": "MAJOR"
+      },
+      {
+        "regex": "bg-dark(?!.*text-white)(?!.*offcanvas)",
+        "message": "bg-dark interdit sauf sur Offcanvas (Règle 3 & 4)",
+        "severity": "MAJOR",
+        "context": "footer"
+      }
+    ]
+  },
+  "structure_rules": {
+    "required_tags": [
+      { "tag": "main", "class": "main-content" },
+      { "tag": "header", "class": "sticky-top" },
+      { "tag": "footer", "content_check": "Consensus Design System" }
+    ],
+    "hierarchy": {
+      "table": ["table-crud", "table-mobile"],
+      "td": ["data-label"]
+    }
+  },
+  "mappings": {
+    "icons_fa_to_bi": {
+      "fas fa-key": "bi bi-key",
+      "fas fa-video": "bi bi-camera-video",
+      "fas fa-search": "bi bi-search",
+      "fas fa-trash": "bi bi-trash",
+      "fas fa-pencil": "bi bi-pencil",
+      "fas fa-eye": "bi bi-eye",
+      "fas fa-check": "bi bi-check-lg",
+      "fas fa-times": "bi bi-x-lg"
+    }
+  }
+}
