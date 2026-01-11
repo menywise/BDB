@@ -1,0 +1,474 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME-PRINT.CSS v1.0 - Extension Print pour theme-base.css
+   Usage: <link href="../../_SHARED/css/theme-print.css" rel="stylesheet" media="print">
+   Ou: @import url('theme-print.css') print;
+   
+   Compatible avec theme-base.css v1.4
+   Optimise pour impression A4 (210mm x 297mm)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media print {
+    /* ─────────────────────────────────────────────────────────────────────────
+       1. PAGE SETUP
+       ───────────────────────────────────────────────────────────────────────── */
+    @page {
+        size: A4 portrait;
+        margin: 15mm 12mm 20mm 12mm;
+    }
+
+    @page :first {
+        margin-top: 10mm;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       2. RESET PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    html, body {
+        width: 210mm;
+        font-size: 10pt;
+        line-height: 1.4;
+        color: #000 !important;
+        background: #fff !important;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       3. MASQUER ELEMENTS NON-IMPRIMABLES
+       ───────────────────────────────────────────────────────────────────────── */
+    .sidebar,
+    .header-sticky,
+    .navbar,
+    .btn,
+    .btn-crud,
+    .btn-fiche,
+    .no-print,
+    .history-panel,
+    .modal,
+    .toast,
+    .dropdown-menu,
+    #autocomplete-list,
+    .form-check-input,
+    .form-switch,
+    nav,
+    footer,
+    .pagination,
+    .breadcrumb,
+    [data-bs-toggle],
+    .offcanvas,
+    .sync-indicator,
+    .loading-overlay {
+        display: none !important;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       4. LAYOUT PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    .ms-sidebar {
+        margin-left: 0 !important;
+    }
+
+    .main-content {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    .container,
+    .container-fluid {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .row {
+        margin: 0 !important;
+    }
+
+    .col, [class*="col-"] {
+        padding: 0 4mm !important;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       5. CARDS PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        border-radius: 2mm !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 4mm !important;
+    }
+
+    .card:hover {
+        transform: none !important;
+    }
+
+    .card-header {
+        background: #f5f5f5 !important;
+        border-bottom: 1px solid #ccc !important;
+        padding: 3mm 4mm !important;
+    }
+
+    .card-body {
+        padding: 4mm !important;
+    }
+
+    /* Headers gradient -> solid pour economie encre */
+    .doc-header-primary,
+    .doc-header-success,
+    .doc-header-warning,
+    .doc-header-danger,
+    .doc-header-info {
+        background: #333 !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .pole-card,
+    .layer-card {
+        border-left-width: 3px !important;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       6. TABLES PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        font-size: 9pt !important;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    th, td {
+        border: 1px solid #999 !important;
+        padding: 2mm 3mm !important;
+        text-align: left;
+    }
+
+    th {
+        background: #e5e5e5 !important;
+        font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+        background: #fafafa !important;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       7. BADGES PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    .badge,
+    [class*="badge-soft-"] {
+        border: 1px solid currentColor !important;
+        padding: 1mm 2mm !important;
+        font-size: 8pt !important;
+    }
+
+    .badge-soft-success {
+        background: #d1fae5 !important;
+        color: #065f46 !important;
+    }
+
+    .badge-soft-warning {
+        background: #fef3c7 !important;
+        color: #92400e !important;
+    }
+
+    .badge-soft-danger {
+        background: #fee2e2 !important;
+        color: #b91c1c !important;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       8. TYPOGRAPHY PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    h1 { font-size: 16pt; margin: 0 0 4mm 0; }
+    h2 { font-size: 14pt; margin: 4mm 0 3mm 0; }
+    h3 { font-size: 12pt; margin: 3mm 0 2mm 0; }
+    h4 { font-size: 11pt; margin: 2mm 0 2mm 0; }
+    h5, h6 { font-size: 10pt; margin: 2mm 0 1mm 0; }
+
+    p {
+        orphans: 3;
+        widows: 3;
+        margin-bottom: 2mm;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       9. LINKS PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    a {
+        color: #000 !important;
+        text-decoration: none !important;
+    }
+
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 8pt;
+        color: #666;
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript"]:after {
+        content: "";
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       10. PAGE BREAKS
+       ───────────────────────────────────────────────────────────────────────── */
+    .page-break {
+        page-break-after: always;
+        break-after: page;
+    }
+
+    .page-break-before {
+        page-break-before: always;
+        break-before: page;
+    }
+
+    .avoid-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    img, figure, table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       11. PRINT-ONLY ELEMENTS
+       ───────────────────────────────────────────────────────────────────────── */
+    .print-only {
+        display: block !important;
+    }
+
+    .print-header {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #000;
+        padding-bottom: 3mm;
+        margin-bottom: 5mm;
+    }
+
+    .print-header .logo {
+        max-height: 15mm;
+    }
+
+    .print-header .doc-info {
+        text-align: right;
+        font-size: 8pt;
+    }
+
+    .print-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 8pt;
+        color: #666;
+        border-top: 1px solid #ccc;
+        padding-top: 2mm;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       12. FORMS PRINT (lecture seule)
+       ───────────────────────────────────────────────────────────────────────── */
+    .form-control,
+    .form-select {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    textarea {
+        border-bottom: 1px dotted #999 !important;
+        min-width: 30mm;
+    }
+
+    /* Checkbox print */
+    .print-checkbox {
+        display: inline-block;
+        width: 4mm;
+        height: 4mm;
+        border: 1px solid #000;
+        margin-right: 2mm;
+        vertical-align: middle;
+    }
+
+    .print-checkbox.checked::after {
+        content: "X";
+        font-size: 8pt;
+        font-weight: bold;
+        line-height: 4mm;
+        text-align: center;
+        display: block;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       13. GRIDS PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    .layout-2col {
+        display: block !important;
+    }
+
+    .layout-2col > * {
+        width: 100% !important;
+        margin-bottom: 4mm;
+    }
+
+    .preset-grid,
+    .expert-grid {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 2mm;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       14. SIGNATURE ZONE
+       ───────────────────────────────────────────────────────────────────────── */
+    .signature-zone {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10mm;
+        padding-top: 5mm;
+        border-top: 1px solid #ccc;
+    }
+
+    .signature-block {
+        width: 45%;
+        text-align: center;
+    }
+
+    .signature-line {
+        border-bottom: 1px solid #000;
+        height: 15mm;
+        margin-bottom: 2mm;
+    }
+
+    .signature-label {
+        font-size: 8pt;
+        color: #666;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       15. KPI CARDS PRINT
+       ───────────────────────────────────────────────────────────────────────── */
+    .kpi-card {
+        border: 1px solid #ccc !important;
+        padding: 3mm !important;
+        text-align: center;
+        break-inside: avoid;
+    }
+
+    .kpi-value {
+        font-size: 18pt;
+        font-weight: 700;
+    }
+
+    .kpi-label {
+        font-size: 8pt;
+        color: #666;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       16. HAS CHECKLIST SPECIFIC
+       ───────────────────────────────────────────────────────────────────────── */
+    .has-section {
+        border: 2px solid #000;
+        margin-bottom: 5mm;
+        break-inside: avoid;
+    }
+
+    .has-section-header {
+        background: #333 !important;
+        color: #fff !important;
+        padding: 2mm 4mm;
+        font-weight: 700;
+        font-size: 10pt;
+    }
+
+    .has-section-body {
+        padding: 3mm 4mm;
+    }
+
+    .has-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 2mm;
+        padding-bottom: 2mm;
+        border-bottom: 1px dotted #ccc;
+    }
+
+    .has-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .has-checkbox {
+        width: 5mm;
+        height: 5mm;
+        border: 1.5px solid #000;
+        margin-right: 3mm;
+        flex-shrink: 0;
+        margin-top: 0.5mm;
+    }
+
+    .has-checkbox.checked {
+        background: #000;
+    }
+
+    .has-label {
+        flex: 1;
+        font-size: 9pt;
+    }
+
+    .has-critical {
+        border-color: #c00 !important;
+    }
+
+    .has-critical .has-section-header {
+        background: #c00 !important;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SCREEN: Masquer elements print-only
+   ───────────────────────────────────────────────────────────────────────────── */
+@media screen {
+    .print-only,
+    .print-header,
+    .print-footer,
+    .signature-zone {
+        display: none !important;
+    }
+}
