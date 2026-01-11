@@ -212,7 +212,12 @@ body {
 /* ─────────────────────────────────────────────────────────────────────────────
    4.1 CARD HEADERS GRADIENT (Standard Showcase)
    ───────────────────────────────────────────────────────────────────────────── */
-.doc-header-primary,
+.doc-header-primary {
+        background: #ffffff !important; /* Force le fond blanc */
+        color: var(--bs-primary) !important; /* Remet le texte en bleu (ou noir) */
+        border-radius: 0 !important; /* Supprime tous les arrondis */
+        border-bottom: 1px solid #dee2e6 !important; /* Ajoute une fine ligne de séparation */
+}
 .card-header.doc-header-primary {
     background: linear-gradient(135deg, var(--ds-primary) 0%, var(--ds-primary-hover) 100%);
     color: white;
